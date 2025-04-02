@@ -25,7 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: const Text(
           'Radio Explorer',
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.amber),
         ),
         centerTitle: true,
       ),
@@ -39,15 +39,15 @@ class _HomeScreenState extends State<HomeScreen> {
         },
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.shuffle),
+            icon: Icon(Icons.shuffle, color: Colors.amber,),
             label: 'Random',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.radio),
+            icon: Icon(Icons.radio, color: Colors.amber,),
             label: 'Select',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.tag),
+            icon: Icon(Icons.tag, color: Colors.amber),
             label: 'Tags',
           ),
         ],
