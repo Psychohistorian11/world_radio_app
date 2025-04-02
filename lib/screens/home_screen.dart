@@ -1,47 +1,54 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_map/flutter_map.dart';
-import 'package:latlong2/latlong.dart';
+import 'package:radio_map/screens/random_radio_screen.dart';
+import 'package:radio_map/screens/select_radio_screen.dart';
+import 'package:radio_map/screens/tags_list_radio_screen.dart';
 
-final myPosition = LatLng(6.2961654, -75.5663604);
-const MAPBOX_ACCESS_TOKEN = '';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  int _currentIndex = 0;
+  final List<Widget> _screens = [
+    RandomRadioScreen(),
+    SelectRadioScreen(),
+    TagsListRadioScreen(),
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(centerTitle: true, title: const Text('World Radio App')),
-      body: FlutterMap(
-        options: MapOptions(
-          initialCenter: myPosition,
-          minZoom: 2, // Ver más mapa al inicio
-          maxZoom: 18,
-          initialZoom: 4,
+      appBar: AppBar(
+        title: const Text(
+          'Radio Explorer',
+          style: TextStyle(fontWeight: FontWeight.bold),
         ),
-        children: [
-          TileLayer(
-            urlTemplate:
-                'https://api.mapbox.com/styles/v1/mapbox/streets-v12/tiles/{z}/{x}/{y}?access_token={accessToken}',
-            additionalOptions: {
-              'accessToken': MAPBOX_ACCESS_TOKEN,
-              'id': 'mapbox/dark-v11',
-            },
+        centerTitle: true,
+      ),
+      body: _screens[_currentIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentIndex,
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        },
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.shuffle),
+            label: 'Random',
           ),
-          MarkerLayer(
-            markers: [
-              Marker(
-                point: myPosition,
-                width: 40,
-                height: 40,
-                alignment: Alignment.center,
-                child: const Icon(
-                  Icons.person_pin,
-                  color: Colors.amber,
-                  size: 40,
-                ),
-              ),
-            ],
+          BottomNavigationBarItem(
+            icon: Icon(Icons.radio),
+            label: 'Select',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.tag),
+            label: 'Tags',
           ),
         ],
       ),
