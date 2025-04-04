@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:radio_map/components/list_radios.dart';
-import 'package:radio_map/components/radio_map.dart';
+import 'package:radio_map/widgets/country_s_radio.dart';
+import 'package:radio_map/widgets/world_map.dart';
 
-class SelectRadioScreen extends StatefulWidget {
-  const SelectRadioScreen({super.key});
+class RandomRadioScreen extends StatefulWidget {
+  const RandomRadioScreen({super.key});
 
   @override
-  State<SelectRadioScreen> createState() => _SelectRadioState();
+  State<RandomRadioScreen> createState() => _RandomRadioState();
 }
 
-class _SelectRadioState extends State<SelectRadioScreen> {
+class _RandomRadioState extends State<RandomRadioScreen> {
   String? selectedCountryCode;
   String? selectedCountryName;
   String? selectedCountryFlag;
@@ -20,14 +20,21 @@ class _SelectRadioState extends State<SelectRadioScreen> {
       selectedCountryCode = countryCode;
       selectedCountryFlag = countryFlag;
     });
-    print("País seleccionado: $countryName ($countryCode)"); // Debug
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+         appBar: AppBar(
+        title: const Text(
+          'Radio Explorer',
+          style: TextStyle(color: Colors.white, fontFamily: 'StyleScript', fontSize: 40),
+        ),
+        centerTitle: false,
+      ),
       body: Column(
         children: [
-          Expanded(child: RadioMap(onCountrySelected: _updateCountry)),
+          Expanded(child: WorldMap(onCountrySelected: _updateCountry)),
           if (selectedCountryCode != null)
             Container(
               padding: const EdgeInsets.all(16.0),
@@ -64,9 +71,9 @@ class _SelectRadioState extends State<SelectRadioScreen> {
             ),
           if (selectedCountryCode != null)
             SizedBox(
-              height: 300, 
-              child: ListRadios(
-                key: ValueKey(selectedCountryCode), 
+              height: 120, 
+              child: CountryRadio(
+                key: ValueKey(selectedCountryCode),
                 countryCode: selectedCountryCode!,
               ),
             ),

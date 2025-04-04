@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:radio_map/components/play_radio.dart';
-import '../core/api_service.dart';
+import 'package:radio_map/widgets/play_radio.dart';
+import '../core/radio_api_service.dart';
+import 'package:radio_map/domain/model/radio_detail.dart';
 
 class CountryRadio extends StatefulWidget {
   final String countryCode;
@@ -12,7 +13,7 @@ class CountryRadio extends StatefulWidget {
 }
 
 class _CountryRadioState extends State<CountryRadio> {
-  Map<String, dynamic>? _selectedRadio;
+  RadioDetail? selectedRadio;
   bool _isLoading = true;
 
   @override
@@ -23,9 +24,9 @@ class _CountryRadioState extends State<CountryRadio> {
 
   Future<void> _fetchRandomRadio() async {
     try {
-      final radio = await ApiService.getRandomRadioByCountry(widget.countryCode);
+      RadioDetail? radio = await RadioApiService.getRandomRadioByCountry(widget.countryCode);
       setState(() {
-        _selectedRadio = radio;
+        selectedRadio = radio;
         _isLoading = false;
       });
     } catch (e) {
@@ -38,8 +39,9 @@ class _CountryRadioState extends State<CountryRadio> {
 
   @override
   Widget build(BuildContext context) {
-    return _isLoading ? const Center(child: CircularProgressIndicator())
-        : _selectedRadio == null
+    return _isLoading
+        ? const Center(child: CircularProgressIndicator())
+        : selectedRadio == null
             ? const Center(child: Text("No se encontró una radio"))
             : Column(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -48,27 +50,26 @@ class _CountryRadioState extends State<CountryRadio> {
                     padding: const EdgeInsets.all(16),
                     child: Row(
                       children: [
-                        if (_selectedRadio!["favicon"] != null && _selectedRadio!["favicon"].isNotEmpty)
-                      Image.network(_selectedRadio!["favicon"], width: 80, height: 80, fit: BoxFit.cover)
-                    else
-                      const Icon(Icons.radio, size: 80, color: Colors.amber),
-                    
-                    Padding(
-                      padding: const EdgeInsets.only(left: 12),
-                      child: Text(
-                        _selectedRadio!["name"],
-                        style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                      ),
-                    ),
-
-                    PlayRadio(selectedRadio: _selectedRadio),
+                        if (selectedRadio!.favicon.isNotEmpty)
+                          Image.network(selectedRadio!.favicon,
+                              width: 80, height: 80, fit: BoxFit.cover)
+                        else
+                          const Icon(Icons.radio, size: 80, color: Colors.amber),
+                        const SizedBox(width: 12),
+                        SizedBox(
+                          width: 200,
+                          child: Text(
+                            selectedRadio!.name,
+                            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
+                          ),
+                        ),
+                        PlayRadio(selectedRadio: selectedRadio),
                       ],
                     ),
                   ),
-                  
                 ],
               );
-
-
   }
 }
