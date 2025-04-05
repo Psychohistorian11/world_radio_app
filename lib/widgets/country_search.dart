@@ -25,9 +25,11 @@ class _CountrySearchState extends State<CountrySearch> {
       padding: const EdgeInsets.only(left: 16, bottom: 16, right: 16),
       child: TextField(
         controller: _controller,
+        style: TextStyle(color: Colors.black),
         onSubmitted: (_) => _handleSearch(), 
         decoration: InputDecoration(
           hintText: 'Search country...',
+          hintStyle: TextStyle(color: Colors.grey),
           prefixIcon: const Icon(Icons.search, color: Colors.black),
           suffixIcon: IconButton(
             icon: const Icon(Icons.arrow_forward, color: Colors.blue),

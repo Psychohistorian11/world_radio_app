@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:latlong2/latlong.dart';
-// ignore: depend_on_referenced_packages
 import 'package:http/http.dart' as http;
 import 'package:radio_map/domain/model/country_detail.dart';
 
@@ -20,7 +19,7 @@ class MapApiService {
         if (data['features'].isNotEmpty) {
           for (var feature in data['features']) {
             if (feature['place_type'].contains('country')) {
-              return CountryDetail.fromJson(feature);
+              return CountryDetail.mapBoxfromJson(feature);
             }
           }
         }

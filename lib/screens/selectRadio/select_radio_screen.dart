@@ -17,7 +17,7 @@ class _SelectRadioState extends State<SelectRadioScreen> {
     setState(() {
       searchQuery = query;
     });
-    // Aquí luego llamas a la API con searchQuery
+   
   }
 
   @override
@@ -33,10 +33,10 @@ class _SelectRadioState extends State<SelectRadioScreen> {
       body: Column(
         children: [
           const SizedBox(height: 10),
-          CountrySearch(onSearch: _onSearch), // Pasamos la función de búsqueda
+          CountrySearch(onSearch: _onSearch),
           Expanded(
-            child: CountryList(), // Se lo pasamos a la lista
-          ),
+              child: CountryList(searchQuery: searchQuery),
+            ),
         ],
       ),
     );

@@ -25,7 +25,7 @@ class _ListRadiosState extends State<RadioList> {
 
   Future<void> _fetchListRadios() async {
       try{
-           final radios = await RadioApiService.getRadiosByCountry(widget.countryCode);
+           List<RadioDetail> radios = await RadioApiService.getRadiosByCountry(widget.countryCode);
            setState(() {
                _radios = radios;
               _isLoading = false;
@@ -37,23 +37,37 @@ class _ListRadiosState extends State<RadioList> {
       }
   }
    @override
-  Widget build(BuildContext context) {
-    return _isLoading
+Widget build(BuildContext context) {
+  return Scaffold(
+    appBar: AppBar(
+      title: Text("${widget.countryCode.toUpperCase()} Radios"),
+    ),
+    body: _isLoading
         ? const Center(child: CircularProgressIndicator())
         : _radios!.isEmpty
-            ? const Center(child: Text("Not found radios"))
+            ? const Center(child: Text("Not radios found"))
             : ListView.builder(
                 itemCount: _radios!.length,
                 itemBuilder: (context, index) {
                   final radio = _radios![index];
                   return ListTile(
-                    leading:  radio.favicon.isNotEmpty
+                    leading: radio.favicon.isNotEmpty
                         ? Image.network(radio.favicon, width: 40, height: 40, fit: BoxFit.cover)
                         : const Icon(Icons.radio, size: 40, color: Colors.amber),
-                    title: Text(radio.name),
-                    subtitle: Text(radio.url),
+                    title: Text(
+                      radio.name,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    subtitle: Text(
+                      radio.url,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   );
                 },
-              );
-  }
+              ),
+  );
+}
+
 }

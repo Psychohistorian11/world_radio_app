@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:math';
-// ignore: depend_on_referenced_packages
 import 'package:http/http.dart' as http;
 import 'package:radio_map/domain/model/radio_detail.dart';
 

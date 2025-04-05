@@ -28,7 +28,7 @@ class _RandomRadioState extends State<RandomRadioScreen> {
          appBar: AppBar(
         title: const Text(
           'Radio Explorer',
-          style: TextStyle(color: Colors.white, fontFamily: 'StyleScript', fontSize: 40),
+          style: TextStyle(color: Colors.white, fontFamily: 'StyleScript', fontSize: 50),
         ),
         centerTitle: false,
       ),
