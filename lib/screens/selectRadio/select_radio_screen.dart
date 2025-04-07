@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:radio_map/widgets/country_list.dart';
-import 'package:radio_map/widgets/country_search.dart';
+import 'package:radio_map/widgets/searchRadio/country_list.dart';
+import 'package:radio_map/widgets/searchRadio/country_search.dart';
 
 
 class SelectRadioScreen extends StatefulWidget {
@@ -14,6 +14,7 @@ class _SelectRadioState extends State<SelectRadioScreen> {
   String searchQuery = '';
 
   void _onSearch(String query) {
+    if(!mounted) return;
     setState(() {
       searchQuery = query;
     });

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:radio_map/widgets/country_s_radio.dart';
-import 'package:radio_map/widgets/world_map.dart';
+import 'package:radio_map/widgets/mapRadio/world_map.dart';
 
 class RandomRadioScreen extends StatefulWidget {
   const RandomRadioScreen({super.key});
@@ -15,6 +15,7 @@ class _RandomRadioState extends State<RandomRadioScreen> {
   String? selectedCountryFlag;
 
   void _updateCountry(String countryName, String countryCode, String countryFlag) {
+    if(!mounted) return;
     setState(() {
       selectedCountryName = countryName;
       selectedCountryCode = countryCode;
@@ -40,7 +41,6 @@ class _RandomRadioState extends State<RandomRadioScreen> {
               padding: const EdgeInsets.all(16.0),
               decoration: BoxDecoration(
                 color: Colors.black54,
-                borderRadius: BorderRadius.circular(10),
               ),
               child: Row(
                 children: [

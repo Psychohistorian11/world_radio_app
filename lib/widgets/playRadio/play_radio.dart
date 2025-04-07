@@ -30,7 +30,7 @@ class _PlayRadioState extends State<PlayRadio> {
           _isPlaying = true;
         });
       } catch (e) {
-        print("Error al reproducir la radio: $e");
+        return;
       }
     }
   }

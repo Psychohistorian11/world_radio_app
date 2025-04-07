@@ -25,7 +25,7 @@ class MapApiService {
         }
       }
     } catch (e) {
-      print('Error obteniendo país: $e');
+      return null;
     }
     return null; 
   }

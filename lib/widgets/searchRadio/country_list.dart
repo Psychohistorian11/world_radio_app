@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:radio_map/core/country_api_service.dart';
 import 'package:radio_map/domain/model/country_detail.dart';
-import 'package:radio_map/widgets/radio_list.dart';
+import 'package:radio_map/widgets/searchRadio/radio_list_by_country.dart';
 
 class CountryList extends StatefulWidget {
   final String searchQuery;
@@ -44,20 +44,16 @@ class _CountryListState extends State<CountryList> {
 
    @override
   Widget build(BuildContext context) {
-    if (_isLoading) {
-      return const Center(child: CircularProgressIndicator());
-    }
-
-    if (countries.isEmpty) {
-      return const Center(child: Text("Not countries found."));
-    }
+    if (_isLoading) return const Center(child: CircularProgressIndicator());
+    if (countries.isEmpty) return const Center(child: Text("Not countries found."));
+    
 
     return Padding(
       padding: const EdgeInsets.all(12),
       child: GridView.builder(
         itemCount: countries.length,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 4, // 3 columnas
+          crossAxisCount: 4, 
           crossAxisSpacing: 12,
           mainAxisSpacing: 12,
           childAspectRatio: 4 / 3, 
@@ -70,7 +66,7 @@ class _CountryListState extends State<CountryList> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => RadioList(
+                        builder: (context) => RadioListByCountry(
                           countryCode: country.shortCode, 
                         ),
                       ),
@@ -94,7 +90,7 @@ class _CountryListState extends State<CountryList> {
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                   ),
-                ),
+                ),  
                 child: Text(
                   country.name,
                   style: const TextStyle(

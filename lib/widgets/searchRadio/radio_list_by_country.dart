@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:radio_map/core/radio_api_service.dart';
 import 'package:radio_map/domain/model/radio_detail.dart';
+import 'package:radio_map/widgets/playRadio/radio_menu.dart';
 
-class RadioList extends StatefulWidget {
+class RadioListByCountry extends StatefulWidget {
     final String countryCode;
 
-  const RadioList({super.key, required this.countryCode});
+  const RadioListByCountry({super.key, required this.countryCode});
 
 
   @override
-  State<RadioList> createState() => _ListRadiosState();
+  State<RadioListByCountry> createState() => _ListRadiosState();
 }
 
-class _ListRadiosState extends State<RadioList> {
+class _ListRadiosState extends State<RadioListByCountry> {
 
   List<RadioDetail>? _radios;
   bool _isLoading = true;
@@ -64,6 +65,25 @@ Widget build(BuildContext context) {
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
+                    onTap: () {
+                      showModalBottomSheet(
+                        context: context,
+                        isScrollControlled: true, 
+                        shape: const RoundedRectangleBorder(
+                        ),
+                        builder: (context) => DraggableScrollableSheet(
+                          initialChildSize: 0.15, 
+                          minChildSize: 0.1,
+                          maxChildSize: 0.9,
+                          expand: false,
+                          builder: (context, scrollController) {
+                            return RadioMenu(
+                              selectedRadio: radio,
+                            );
+                          },
+                        ),
+                      );
+                    },
                   );
                 },
               ),
