@@ -27,6 +27,7 @@ class _RandomRadioState extends State<RandomRadioScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
          appBar: AppBar(
+          backgroundColor: Colors.black,
         title: const Text(
           'Radio Explorer',
           style: TextStyle(color: Colors.white, fontFamily: 'StyleScript', fontSize: 50),
@@ -36,11 +37,12 @@ class _RandomRadioState extends State<RandomRadioScreen> {
       body: Column(
         children: [
           Expanded(child: WorldMap(onCountrySelected: _updateCountry)),
+          
           if (selectedCountryCode != null)
             Container(
               padding: const EdgeInsets.all(16.0),
               decoration: BoxDecoration(
-                color: Colors.black54,
+                color: Colors.black,
               ),
               child: Row(
                 children: [
@@ -48,7 +50,7 @@ class _RandomRadioState extends State<RandomRadioScreen> {
                     Image.network(
                       selectedCountryFlag!,
                       width: 60,
-                      height: 30,
+                      height: 35,
                       fit: BoxFit.cover,
                     ),
                   Padding(
@@ -72,7 +74,7 @@ class _RandomRadioState extends State<RandomRadioScreen> {
           if (selectedCountryCode != null)
             SizedBox(
               height: 120, 
-              child: CountryRadio(
+              child: CountrysRadio(
                 key: ValueKey(selectedCountryCode),
                 countryCode: selectedCountryCode!,
               ),

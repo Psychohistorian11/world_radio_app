@@ -25,6 +25,7 @@ class _SelectRadioState extends State<SelectRadioScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.blueGrey,
         title: const Text(
           'Search',
           style: TextStyle(color: Colors.white, fontFamily: 'StyleScript', fontSize: 50),

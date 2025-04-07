@@ -3,16 +3,16 @@ import 'package:radio_map/widgets/playRadio/radio_menu.dart';
 import '../core/radio_api_service.dart';
 import 'package:radio_map/domain/model/radio_detail.dart';
 
-class CountryRadio extends StatefulWidget {
+class CountrysRadio extends StatefulWidget {
   final String countryCode;
 
-  const CountryRadio({super.key, required this.countryCode});
+  const CountrysRadio({super.key, required this.countryCode});
 
   @override
-  State<CountryRadio> createState() => _CountryRadioState();
+  State<CountrysRadio> createState() => _CountryRadioState();
 }
 
-class _CountryRadioState extends State<CountryRadio> {
+class _CountryRadioState extends State<CountrysRadio> {
   RadioDetail? selectedRadio;
   bool _isLoading = true;
 

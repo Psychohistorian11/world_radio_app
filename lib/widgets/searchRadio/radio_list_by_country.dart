@@ -41,7 +41,9 @@ class _ListRadiosState extends State<RadioListByCountry> {
 Widget build(BuildContext context) {
   return Scaffold(
     appBar: AppBar(
-      title: Text("${widget.countryCode.toUpperCase()} Radios"),
+      backgroundColor: Colors.blueGrey,
+      title: Text("${widget.countryCode.toUpperCase()}   Radios", 
+      style: TextStyle(color: Colors.white, fontFamily: 'StyleScript', fontSize: 30),), 
     ),
     body: _isLoading
         ? const Center(child: CircularProgressIndicator())

@@ -47,7 +47,6 @@ class _CountryListState extends State<CountryList> {
     if (_isLoading) return const Center(child: CircularProgressIndicator());
     if (countries.isEmpty) return const Center(child: Text("Not countries found."));
     
-
     return Padding(
       padding: const EdgeInsets.all(12),
       child: GridView.builder(
@@ -60,7 +59,6 @@ class _CountryListState extends State<CountryList> {
         ),
         itemBuilder: (context, index) {
           final country = countries[index];
-
           return GestureDetector(
             onTap: () {
                     Navigator.push(

@@ -38,7 +38,10 @@ class _RadioListByTagState extends State<RadioListByTag>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Radios: ${widget.tag.name}")),
+      appBar: AppBar(
+        backgroundColor: Colors.blueGrey,
+        title: Text("Radios: ${widget.tag.name}", 
+        style: TextStyle(color: Colors.white, fontFamily: 'StyleScript', fontSize: 30))),
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
           : _radios == null || _radios!.isEmpty

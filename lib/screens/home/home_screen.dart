@@ -26,21 +26,28 @@ class _HomeScreenState extends State<HomeScreen> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         onTap: (index) {
+          if (!mounted) return;
           setState(() {
             _currentIndex = index;
           });
         },
+        backgroundColor: Colors.black,
+        selectedItemColor: Colors.blue,
+        unselectedItemColor: Colors.grey,
+        selectedFontSize: 16,
+        unselectedFontSize: 14,
+
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.shuffle, color: Colors.blue,),
+            icon: Icon(Icons.shuffle),
             label: 'Random',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.radio, color: Colors.blue,),
+            icon: Icon(Icons.radio),
             label: 'Select' ,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.tag, color: Colors.blue),
+            icon: Icon(Icons.category),
             label: 'Tags',
           ),
         ],

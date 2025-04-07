@@ -13,6 +13,7 @@ class _TagsListRadioState extends State<TagsListRadioScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.blueGrey,
         title: const Text('Tags', 
         style: TextStyle(color: Colors.white, fontFamily: 'StyleScript', fontSize: 50),
       ),
