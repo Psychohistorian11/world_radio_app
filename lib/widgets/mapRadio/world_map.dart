@@ -40,7 +40,7 @@ class WorldMap extends StatefulWidget {
         children: [
           TileLayer(
             urlTemplate:
-                'https://api.mapbox.com/styles/v1/mapbox/dark-v11/tiles/{z}/{x}/{y}?access_token={accessToken}',
+                'https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v12/tiles/{z}/{x}/{y}?access_token={accessToken}',
             additionalOptions: {
               'accessToken': _mapboxToken,
             },
